@@ -5,7 +5,7 @@ export const restaurantsRequest = (location) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
     if (!mock) {
-      reject("Location not found!");
+      reject("not found");
     }
     resolve(mock);
   });
@@ -23,5 +23,6 @@ export const restaurantsTransform = ({ results = [] }) => {
       isClosedTemporarily: restaurant.business_status === "CLOSED_TEMPORARILY",
     };
   });
-  return mappedResults;
+
+  return camelize(mappedResults);
 };
